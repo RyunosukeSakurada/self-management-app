@@ -1,6 +1,6 @@
 const JournalHome = () => {
   return (
-    <div className="lg:w-3/4">
+    <div className="bg-zinc-900 lg:w-3/4 p-4">
       JournalHome
     </div>
   )
