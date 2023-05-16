@@ -38,7 +38,6 @@ const TodoList = () => {
 
 
   //toggle status of "completed"
-
   const handleCheckboxChange = (id) => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === id) {
@@ -93,7 +92,6 @@ const TodoList = () => {
               </p>
             </div>
             <div className="flex items-center gap-x-1">
-              <FiEdit />
               <BiTrash onClick={() => handleDeleteTodo(todo.id)} />
             </div>
           </li>

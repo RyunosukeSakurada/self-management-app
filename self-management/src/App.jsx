@@ -1,20 +1,16 @@
 import React from "react"
-import TodoHome from "./todo/TodoHome"
-import Header from "./components/Header"
-import JournalHome from "./journal/JournalHome"
+import {useAuthState} from "react-firebase-hooks/auth"
+import {auth} from "./firebase"
+import Home from "./pages/Home"
+import Login from "./pages/Login"
 
-const style = {
-  bg:"min-h-screen w-full bg-zinc-800 text-zinc-200",
-}
 
 function App() {
+  const [user] = useAuthState(auth)
+
   return (
-    <div className={style.bg}>
-      <Header/>
-      <div className="p-4 lg:flex lg:gap-x-10">
-        <TodoHome />
-        <JournalHome />
-      </div>
+    <div className="bg-zinc-800 min-h-screen ">
+      {user ? <Home /> : <Login/> }
     </div>
   )
 }
