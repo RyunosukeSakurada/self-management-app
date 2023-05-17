@@ -10,7 +10,7 @@ const Header = () => {
         <Button
           onClick={() => auth.signOut()}
           variant="outlined"
-          color="info"
+          color="warning"
         >
           Logout
         </Button>

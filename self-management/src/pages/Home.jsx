@@ -5,7 +5,7 @@ import TodoHome from "../todo/TodoHome"
 
 const Home = () => {
   return (
-    <div className="bg-zinc-800 min-h-screen ">
+    <div className="min-h-screen ">
       <Header/>
       <div className="p-4 lg:flex lg:gap-x-10">
         <TodoHome />

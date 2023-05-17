@@ -10,16 +10,17 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <h2>Self Management</h2>
+    <div className="text-zinc-200 flex flex-col justify-center items-center min-h-screen">
+      <h3 className="text-4xl font-semibold">Unleash your creativity, remember every moment</h3>
+      <p className="mt-3 mb-10"> The all-in-one app for notes and journaling </p>
       <Button 
           onClick={signInWithGoogle}
           variant="outlined"
-          color="info"
-          sx={{ width: 250, padding: 1.5}}
-        >
-            Login
-        </Button>
+          color="warning"
+          sx={{ width: 300, padding: 1.5}}
+      >
+        Login with Google Account
+      </Button>
     </div>
   )
 }
