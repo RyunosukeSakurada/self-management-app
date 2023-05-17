@@ -6,6 +6,7 @@ import { db } from '../firebase';
 const JournalHome = () => {
   const [selectedJournal, setSelectedJournal] = useState(null);
 
+  //Use the setSelectedJournal function to set the selected journal to the journal
   const handleJournalClick = (journal) => {
     setSelectedJournal(journal);
   };
@@ -19,12 +20,13 @@ const JournalHome = () => {
         createdAt: new Date().toISOString(),
       };
 
+      //Add a new journal to the collection of journals
       const docRef = db.collection('journals').add(newJournal);
+      //Retrieve the reference of the added document and obtain its ID
       const journalId = docRef.id;
 
-      const updatedJournalList = [{ id: journalId, ...newJournal }, ...journalList];
-      setJournalList(updatedJournalList);
-
+      //Use the setSelectedJournal function to update the selected journal 
+      //by setting its ID and the new journal object
       setSelectedJournal({ id: journalId, ...newJournal });
     } catch (error) {
       console.error('Error adding journal: ', error);
