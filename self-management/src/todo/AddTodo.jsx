@@ -23,7 +23,7 @@ function AddTodo(){
 
   return (
     <form 
-      className="flex justify-between items-center mb-5"
+      className="flex justify-between items-center mb-5 mt-6"
       onSubmit={handleAddTodo}
     >
       <input 

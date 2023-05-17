@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import {BiTrash} from "react-icons/bi"
-import {FiEdit} from "react-icons/fi"
 import {db} from "../firebase";
 
 
