@@ -2,35 +2,42 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 
 const JournalContent = ({ selectedJournal }) => {
-  //State to retain the title of a journal being edited
+  //編集されたジャーナルのタイトルとコンテンツを保持するための状態変数
+  //selectedJournalが存在する場合はそのタイトルとコンテンツを、存在しない場合は空文字列を使用
   const [editedTitle, setEditedTitle] = useState(selectedJournal?.title || '');
-  //State to retain the content of a journal being edited
   const [editedContent, setEditedContent] = useState(selectedJournal?.content || '');
 
-  //Update the title and content being edited when selectedJournal is modified. 
-  //If selectedJournal exists, set its title and content in the state
+
+  //selectedJournalの変更を監視し、変更があった場合にeditedTitleとeditedContentを更新
   useEffect(() => {
     setEditedTitle(selectedJournal?.title || '');
     setEditedContent(selectedJournal?.content || '');
   }, [selectedJournal]);
 
-  //Detects a change in the title and updates the state of "editedTitle"
+
+  //ジャーナルのタイトルが変更された時に実行される関数
   const handleJournalTitleChange = (e) => {
+    //e.target.valueで入力された新しいタイトルを取得
     const updatedTitle = e.target.value;
-    //Called when the title and content of the journal are modified.
+    //editedTitleの状態を更新
     setEditedTitle(updatedTitle);
-    //Update the title of the journal in the database
+    //Firestore上の該当するドキュメントのタイトルを更新
     db.collection('journals').doc(selectedJournal.id).update({ title: updatedTitle });
   };
 
-  //Detects a change in the content and updates the state of "editedTitle"
+
+  //ジャーナルのコンテンツが変更された時に実行される関数
   const handleJournalContentChange = (e) => {
+    //e.target.valueで入力された新しいコンテンツを取得
     const updatedContent = e.target.value;
-    //Called when the title and content of the journal are modified.
+    //editedContentの状態を更新
     setEditedContent(updatedContent);
-    //Update the content of the journal in the database
+    //Firestore上の該当するドキュメントのコンテンツを更新
     db.collection('journals').doc(selectedJournal.id).update({ content: updatedContent });
   };
+
+
+
 
   return (
     <div className="lg:w-3/4 bg-zinc-800 min-h-[500px] rounded">
@@ -44,8 +51,8 @@ const JournalContent = ({ selectedJournal }) => {
           />
           <textarea
             value={editedContent}
-            placeholder='Content'
             onChange={handleJournalContentChange}
+            placeholder='Content'
             className="w-full bg-zinc-800 p-2 min-h-[500px]"
           />
         </div>

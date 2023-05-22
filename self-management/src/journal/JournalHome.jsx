@@ -4,29 +4,36 @@ import JournalContent from './JournalContent';
 import { db } from '../firebase';
 
 const JournalHome = () => {
+  //Journalが選択されているかどうかの状態変数
   const [selectedJournal, setSelectedJournal] = useState(null);
 
-  //Use the setSelectedJournal function to set the selected journal to the journal
+
+  //選択されているjournalの定義
   const handleJournalClick = (journal) => {
+    //selectedJournalの値がjournalの値に更新される
     setSelectedJournal(journal);
   };
 
+
+  //Journalの追加
   const handleAddJournal = (e) => {
+    //フォームの送信時にページがリロードされるのを防ぐ
     e.preventDefault();
     try {
+      //新しいジャーナル（newJournal）オブジェクトを作成
       const newJournal = {
         title: 'Title',
         content: '',
+        //現在の日時を表すISO形式の文字列
         createdAt: new Date().toISOString(),
       };
 
-      //Add a new journal to the collection of journals
+      //追加されたジャーナルのドキュメントへの参照が格納
       const docRef = db.collection('journals').add(newJournal);
-      //Retrieve the reference of the added document and obtain its ID
+      //新しく作成されたジャーナルのIDを取得
       const journalId = docRef.id;
 
-      //Use the setSelectedJournal function to update the selected journal 
-      //by setting its ID and the new journal object
+      //selectedJournalの状態を更新。この関数は、idプロパティにjournalIdを持つオブジェクトをnewJournalオブジェクトとマージして呼び出されます。
       setSelectedJournal({ id: journalId, ...newJournal });
     } catch (error) {
       console.error('Error adding journal: ', error);
